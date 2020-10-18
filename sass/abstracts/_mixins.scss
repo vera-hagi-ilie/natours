@@ -1,0 +1,48 @@
+@mixin clearfix {
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+/*
+0px    - 300px  Phone extra small;
+300px  - 600px  Phone;
+600px  - 900px  Tablet Portrait;
+900px  - 1200px Tablet Landscape;
+1200px - 1800px Desktop
+1800px +        Large Desktop
+
+$breakpoint values: phone-xs, phone, tab-port, tab-land, big-desktop
+1em = 16px
+In media queries use em instead of rem. Rem in media queries depend on the browser setting only.
+"only screen" means do not apply sizes when printing, etc.
+*/
+@mixin respond($breakpoint){
+	@if $breakpoint == phone-xs {
+		@media only screen and (max-width: 18.75em) { //300px
+			@content
+		}
+	}
+	@if $breakpoint == phone {
+		@media only screen and (max-width: 37.5em) { //600px
+			@content
+		}
+	}
+	@if $breakpoint == tab-port {
+		@media only screen and (max-width: 56.25em) { //900px
+			@content
+		}
+	}
+	@if $breakpoint == tab-land {
+		@media only screen and (max-width: 75em) { //1200px
+			@content
+		}
+	}
+	@if $breakpoint == big-desktop {
+		@media only screen and (min-width: 112.5em) { //1800px
+			@content
+		}
+	}
+}
