@@ -2,6 +2,7 @@
   "name": "natours",
   "version": "1.0.0",
   "description": "Presentation page for an imaginary tours company",
+  "homepage": "http://vera-hagi-ilie.github.io/natours",
   "main": "index.js",
   "scripts": {
     "dev-prepare:sass": "node-sass sass/main.scss css/style.css",
@@ -9,13 +10,16 @@
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
     "build:css": "npm-run-all compile:sass prefix:css compress:css",
-    "start": "node index.js"
+    "start": "node index.js",
+    "predeploy": "npm run build:css",
+    "deploy": "gh-pages -d ./"
   },
   "author": "VHAG",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^7.2.6",
     "express": "^4.17.1",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^4.1.1"
